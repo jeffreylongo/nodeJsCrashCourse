@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .row
+    .col-xs-6.col-xs-offset-3
+      div
+         h1= title
+      br
+      br
+  .row
+    .col-xs-10.col-xs-offset-1
+      .row
+      - for (let i = 0; i < data.length; i++)
+          .col-sm-6.col-md-4
+            .thumbnail
+              img(src=data[i].artworkUrl100, alt=data[i].artistName, class="img-responsive img-thumbnail")
+              .caption
+                h4(class="text-nowrap ellipsis")!= data[i].name
+                p 
+                 .labels
+                   - for (let j = 0; j < (data[i].genreNames.length > 3 ? 3 : data[i].genreNames.length) ; j++)
+                    span(class="label label-info genre-label" )= data[i].genreNames[j]
+                p
+                  a.btn.btn-primary(href=data[i].url, target="_blank") More Detail
+
+
